@@ -1,3 +1,5 @@
+def dockerImage
+
 pipeline {
     agent any
     stages {
@@ -10,7 +12,7 @@ pipeline {
             steps {
                 echo "Iniciando processo de construção de imagem docker"
                 script {
-                    def dockerImage = docker.build("pgabrieldeveloper/deploy-k8s:${env.BUILD_ID}", "-f Dockerfile.prod .")
+                    dockerImage = docker.build("pgabrieldeveloper/deploy-k8s:${env.BUILD_ID}", "-f Dockerfile.prod .")
                 }
                 echo "Build finalizado"
             }
@@ -21,7 +23,7 @@ pipeline {
                 script {
                     docker.withRegistry("https://registry.hub.docker.com", "dockerhub") {
                         dockerImage.push("latest")
-                        dockerImage.push(${env.BUILD_ID})
+                        dockerImage.push("${env.BUILD_ID}")
                     }
                 }
                 echo "Push finalizado"
@@ -29,4 +31,3 @@ pipeline {
         }
     }
 }
-
