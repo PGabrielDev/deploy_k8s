@@ -15,17 +15,7 @@ pipeline {
                 echo "Build finalizado"
             }
         }
-        stage("Push Docker Image"){
-            steps {
-                echo "Inicando processo de push de imagem"
-                script {
-                    docker.withRegistry("https://registry.hub.docker.com", "dockerhub") {
-                        dockerImage.push("latest")
-                    }
-                }
-                echo "Push finalizado"
-            }
-        }
+        
     }
 }
 
