@@ -22,24 +22,24 @@ spec:
         startupProbe:
           httpGet:
             path: /
-            port: 8080
+            port: 8081
           periodSeconds: 10
           failureThreshold: 3
         readinessProbe:
           httpGet:
             path: /
-            port: 8080
+            port: 8081
           periodSeconds: 10
           failureThreshold: 2
           timeoutSeconds: 5
         livenessProbe:
           httpGet:
             path: /
-            port: 8080
+            port: 8081
           periodSeconds: 10
           failureThreshold: 2
           timeoutSeconds: 5
           successThreshold: 1
 
         ports:
-        - containerPort: 8080
+        - containerPort: 8081
